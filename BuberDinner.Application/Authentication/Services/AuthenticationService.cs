@@ -1,4 +1,6 @@
-﻿using BuberDinner.Application.Authentication;
+﻿
+
+using BuberDinner.Application.Common.Services;
 
 namespace BuberDinner.Application;
 
@@ -9,9 +11,9 @@ public interface IAuthenticationService
 }
 public class AuthenticationService : IAuthenticationService
 {
-    private readonly IJwtTokenService _jwtTokenService;
+    private readonly IJwtTokenGenerator _jwtTokenService;
 
-    public AuthenticationService(IJwtTokenService jwtTokenService)
+    public AuthenticationService(IJwtTokenGenerator jwtTokenService)
     {
         _jwtTokenService = jwtTokenService;
     }
