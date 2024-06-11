@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using BuberDinner.Application.Common.Services;
+using BuberDinner.Domain.Entities;
 
 namespace BuberDinner.Infrastructure.Authentication
 {
@@ -18,15 +19,15 @@ namespace BuberDinner.Infrastructure.Authentication
             _jwtSettings = jwtOptions.Value;
         }
 
-        public string GenerateToken(Guid userId, string firstName, string lastName)
+        public string GenerateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
 
             var claims = new Dictionary<string, object>
             {
-                [JwtRegisteredClaimNames.Sub] = userId.ToString(),
-                [JwtRegisteredClaimNames.GivenName] = firstName,
-                [JwtRegisteredClaimNames.FamilyName] = lastName,
+                [JwtRegisteredClaimNames.Sub] = user.Id.ToString(),
+                [JwtRegisteredClaimNames.GivenName] = user.FirstName,
+                [JwtRegisteredClaimNames.FamilyName] = user.LastName,
                 [JwtRegisteredClaimNames.Jti] = Guid.NewGuid().ToString(),
             };
 
