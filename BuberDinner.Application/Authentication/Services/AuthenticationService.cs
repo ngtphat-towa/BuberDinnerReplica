@@ -1,4 +1,4 @@
-﻿using BuberDinner.Application.Common.Interfaces;
+﻿using BuberDinner.Application.Authentication;
 
 namespace BuberDinner.Application;
 

@@ -1,4 +1,4 @@
-namespace BuberDinner.Application.Common.Interfaces;
+namespace BuberDinner.Application.Authentication;
 
 public interface IJwtTokenService
 {
