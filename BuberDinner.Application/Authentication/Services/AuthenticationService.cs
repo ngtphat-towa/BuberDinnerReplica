@@ -4,13 +4,15 @@ using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Application.Mapping;
 using BuberDinner.Domain.Entities;
+using FluentResults;
+using BuberDinner.Application.Common.Errors;
 
 namespace BuberDinner.Application;
 
 public interface IAuthenticationService
 {
     AuthenticationResult Login(string email, string password);
-    AuthenticationResult Register(string firstName, string lastName, string email, string password);
+    Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password);
 }
 public class AuthenticationService : IAuthenticationService
 {
@@ -38,13 +40,13 @@ public class AuthenticationService : IAuthenticationService
         return MappingExtensions.MapUserEntityToResult(existingUser, token);
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
         // validate existing of the user
         var existingUser = _userRepository.GetUserByEmail(email);
         if (existingUser is not null)
         {
-            throw new Exception("The give email already existed");
+            return Result.Fail(new DuplicatedEmailError());
         }
 
         var userId = Guid.NewGuid();
