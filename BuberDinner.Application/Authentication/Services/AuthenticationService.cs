@@ -4,6 +4,7 @@ using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Application.Mapping;
 using BuberDinner.Domain.Entities;
+using BuberDinner.Application.Common.Errors;
 
 namespace BuberDinner.Application;
 
@@ -44,7 +45,11 @@ public class AuthenticationService : IAuthenticationService
         var existingUser = _userRepository.GetUserByEmail(email);
         if (existingUser is not null)
         {
-            throw new Exception("The give email already existed");
+            /**
+            Reject due to security risks (plain text passwords, lack of proper exception handling),
+             inadequate error differentiation and handling, and absence of input validation.
+            **/
+            throw new DuplicateEmailException();
         }
 
         var userId = Guid.NewGuid();
