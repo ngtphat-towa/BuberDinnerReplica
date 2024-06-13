@@ -1,4 +1,7 @@
-﻿using BuberDinner.Application;
+﻿using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+
+using BuberDinner.Application;
 using BuberDinner.Contracts.Authentication;
 
 using Microsoft.AspNetCore.Mvc;
@@ -30,23 +33,22 @@ public class AuthenticationController : ApiControllerBase
 
         return Ok(response);
     }
+
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest registerRequest)
+    public async Task<ActionResult<AuthenticationResponse>> Register(RegisterRequest registerRequest)
     {
         await Task.CompletedTask;
-        var authResult = _authenticationService.Register(
+        return _authenticationService.Register(
             registerRequest.FirstName,
             registerRequest.LastName,
             registerRequest.Email,
-            registerRequest.Password);
-
-        var response = new AuthenticationResponse(
-            authResult.User.Id,
-            authResult.User.FirstName,
-            authResult.User.LastName,
-            authResult.User.Email,
-            authResult.Token);
-
-        return Ok(response);
+            registerRequest.Password).Map(
+            x => new AuthenticationResponse(
+            x.User.Id,
+            x.User.FirstName,
+            x.User.LastName,
+            x.User.Email,
+            x.Token)
+        ).ToActionResult(this);
     }
 }

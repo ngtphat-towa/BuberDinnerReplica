@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Result.AspNetCore" Version="9.1.0" />
+    <PackageReference Include="Ardalis.Result.FluentValidation" Version="9.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 

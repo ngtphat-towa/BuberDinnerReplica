@@ -1,3 +1,8 @@
+using System.Net;
+
+using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+
 using BuberDinner.Application;
 using BuberDinner.Infrastructure;
 
@@ -7,7 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddApplication();
     builder.Services.AddInfrastructure(builder.Configuration);
-    builder.Services.AddControllers();
+    builder.Services.AddControllers(mvcOptions => mvcOptions
+        .AddResultConvention(resultStatusMap => resultStatusMap
+            .AddDefaultMap()
+            .For(ResultStatus.Ok, HttpStatusCode.OK, resultStatusOptions => resultStatusOptions
+                .For("POST", HttpStatusCode.Created)
+                .For("DELETE", HttpStatusCode.NoContent))
+            .Remove(ResultStatus.Forbidden)
+            .Remove(ResultStatus.Unauthorized)
+        ));
+
+
 
     builder.Services.AddSingleton<ProblemDetailsFactory, BuberDinnerProblemDetailsFactory>();
 }

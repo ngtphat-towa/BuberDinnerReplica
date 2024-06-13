@@ -1,16 +1,15 @@
-﻿
-
-using BuberDinner.Application.Common.Services;
+﻿using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Application.Mapping;
 using BuberDinner.Domain.Entities;
+using Ardalis.Result;
 
 namespace BuberDinner.Application;
 
 public interface IAuthenticationService
 {
     AuthenticationResult Login(string email, string password);
-    AuthenticationResult Register(string firstName, string lastName, string email, string password);
+    Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password);
 }
 public class AuthenticationService : IAuthenticationService
 {
@@ -38,32 +37,47 @@ public class AuthenticationService : IAuthenticationService
         return MappingExtensions.MapUserEntityToResult(existingUser, token);
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
-        // validate existing of the user
-        var existingUser = _userRepository.GetUserByEmail(email);
-        if (existingUser is not null)
+        try
         {
-            throw new Exception("The give email already existed");
+            // validate existing of the user
+            if (string.IsNullOrEmpty(email))
+            {
+                return Result.Invalid(new ValidationError()
+                {
+                    Identifier = "Email",
+                    ErrorMessage = "Email is required"
+                });
+            }
+            var existingUser = _userRepository.GetUserByEmail(email);
+            if (existingUser is not null)
+            {
+                return Result.Conflict("This given email is already exist in the system!");
+            }
+
+            var userId = Guid.NewGuid();
+            var user = new User()
+            {
+                Id = userId,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = password
+            };
+
+            // Add user into repository
+            _userRepository.Add(user);
+
+            // Create Token
+            var token = _jwtTokenService.GenerateToken(user);
+
+            return MappingExtensions.MapUserEntityToResult(user, token);
         }
-
-        var userId = Guid.NewGuid();
-        var user = new User()
+        catch (Exception ex)
         {
-            Id = userId,
-            FirstName = firstName,
-            LastName = lastName,
-            Email = email,
-            Password = password
-        };
-
-        // Add user into repository
-        _userRepository.Add(user);
-
-        // Create Token
-        var token = _jwtTokenService.GenerateToken(user);
-
-        return MappingExtensions.MapUserEntityToResult(user, token);
+            return Result<AuthenticationResult>.Error(ex.Message);
+        }
 
     }
 
