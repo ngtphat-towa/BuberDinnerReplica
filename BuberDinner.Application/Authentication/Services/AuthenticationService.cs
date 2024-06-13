@@ -1,16 +1,17 @@
-﻿
-
-using BuberDinner.Application.Common.Services;
+﻿using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Application.Mapping;
 using BuberDinner.Domain.Entities;
+using ErrorOr;
+using BuberDinner.Domain.Common.Errors;
+
 
 namespace BuberDinner.Application;
 
 public interface IAuthenticationService
 {
-    AuthenticationResult Login(string email, string password);
-    AuthenticationResult Register(string firstName, string lastName, string email, string password);
+    ErrorOr<AuthenticationResult> Login(string email, string password);
+    ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password);
 }
 public class AuthenticationService : IAuthenticationService
 {
@@ -23,28 +24,27 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public ErrorOr<AuthenticationResult> Login(string email, string password)
     {
         // validate existing of the user
         var existingUser = _userRepository.GetUserByEmail(email);
         if (existingUser is null || !existingUser.Password.Equals(password))
         {
-            throw new Exception("Invalid user or password");
+            return Errors.Auth.InvalidCredential;
         }
-
         // Create Token
         var token = _jwtTokenService.GenerateToken(existingUser);
 
         return MappingExtensions.MapUserEntityToResult(existingUser, token);
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
         // validate existing of the user
         var existingUser = _userRepository.GetUserByEmail(email);
         if (existingUser is not null)
         {
-            throw new Exception("The give email already existed");
+            return Errors.User.DuplicateEmail;
         }
 
         var userId = Guid.NewGuid();
