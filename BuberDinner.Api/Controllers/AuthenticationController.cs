@@ -19,34 +19,33 @@ public class AuthenticationController : ApiControllerBase
     public async Task<IActionResult> Login(LoginRequest loginRequest)
     {
         await Task.CompletedTask;
-        var authResult = _authenticationService.Login(loginRequest.Email, loginRequest.Password);
+        var loginResult = _authenticationService.Login(loginRequest.Email, loginRequest.Password);
 
-        var response = new AuthenticationResponse(
-            authResult.User.Id,
-            authResult.User.FirstName,
-            authResult.User.LastName,
-            authResult.User.Email,
-            authResult.Token);
-
-        return Ok(response);
+        return loginResult.Match(
+             result => Ok(MapResultToResponse(result)),
+             errors => Problem(errors)
+         );
     }
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest registerRequest)
     {
         await Task.CompletedTask;
-        var authResult = _authenticationService.Register(
+        var registerResult = _authenticationService.Register(
             registerRequest.FirstName,
             registerRequest.LastName,
             registerRequest.Email,
             registerRequest.Password);
 
-        var response = new AuthenticationResponse(
+        return registerResult.Match(
+            result => Ok(MapResultToResponse(result)),
+            errors => Problem(errors)
+        );
+    }
+    private static AuthenticationResponse MapResultToResponse(
+        AuthenticationResult authResult) => new(
             authResult.User.Id,
             authResult.User.FirstName,
             authResult.User.LastName,
             authResult.User.Email,
             authResult.Token);
-
-        return Ok(response);
-    }
 }
