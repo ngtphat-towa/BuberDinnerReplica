@@ -7,10 +7,12 @@ using MapsterMapper;
 
 using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api;
 
+[AllowAnonymous]
 public class AuthenticationController : ApiControllerBase
 {
     private readonly ISender _mediator;
