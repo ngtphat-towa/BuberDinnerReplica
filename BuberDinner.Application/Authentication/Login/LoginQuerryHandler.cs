@@ -10,9 +10,6 @@ using MediatR;
 
 namespace BuberDinner.Application.Authentication.Login;
 
-public record LoginQuery(
-    string Email,
-    string Password) : IRequest<ErrorOr<AuthenticationResult>>;
 
 public class LoginQueryHandler :
     IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
