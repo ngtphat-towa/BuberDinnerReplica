@@ -2,11 +2,11 @@ using ErrorOr;
 
 namespace BuberDinner.Domain.Common.Errors;
 
-public static partial class Errors
+public static partial class DomainErrors
 {
     public static class Auth
     {
-        public static Error InvalidCredential => Error.Conflict(
+        public static Error InvalidCredentials => Error.Conflict(
               code: "Auth.InvalidCredential",
               description: "Invalid credentials"
           );
