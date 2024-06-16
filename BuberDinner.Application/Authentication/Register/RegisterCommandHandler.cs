@@ -11,12 +11,6 @@ using MediatR;
 
 namespace BuberDinner.Application.Authentication.Register;
 
-public record RegisterCommand(
-    string FirstName,
-    string LastName,
-    string Email,
-    string Password
-) : IRequest<ErrorOr<AuthenticationResult>>;
 
 public class RegisterCommandHandler :
             IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
