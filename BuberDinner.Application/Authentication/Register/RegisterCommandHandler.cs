@@ -3,7 +3,7 @@ using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Mapping;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Domain.Common.Errors;
-using BuberDinner.Domain.Entities;
+using BuberDinner.Domain.User;
 
 using ErrorOr;
 
@@ -27,24 +27,23 @@ public class RegisterCommandHandler :
     }
 
     public async Task<ErrorOr<AuthenticationResult>> Handle(
-        RegisterCommand request,
+        RegisterCommand command,
         CancellationToken cancellationToken)
     {
-        var existingUser = await _userRepository.GetUserByEmail(request.Email);
+        var existingUser = await _userRepository.GetUserByEmail(command.Email);
         if (existingUser is not null)
         {
             return DomainErrors.User.DuplicateEmail;
         }
 
         var userId = Guid.NewGuid();
-        var user = new User()
-        {
-            Id = userId,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Email = request.Email,
-            Password = request.Password
-        };
+        var user = User.Create
+        (
+            command.FirstName,
+            command.LastName,
+            command.Email,
+            command.Password
+        );
 
         // Add user into repository
         await _userRepository.Add(user);
