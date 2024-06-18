@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using BuberDinner.Application.Common.Services;
-using BuberDinner.Domain.Entities;
+using BuberDinner.Domain.User;
 
 namespace BuberDinner.Infrastructure.Authentication
 {
@@ -25,7 +25,7 @@ namespace BuberDinner.Infrastructure.Authentication
 
             var claims = new Dictionary<string, object>
             {
-                [JwtRegisteredClaimNames.Sub] = user.Id.ToString(),
+                [JwtRegisteredClaimNames.Sub] = user.Id.Value.ToString(),
                 [JwtRegisteredClaimNames.GivenName] = user.FirstName,
                 [JwtRegisteredClaimNames.FamilyName] = user.LastName,
                 [JwtRegisteredClaimNames.Jti] = Guid.NewGuid().ToString(),
