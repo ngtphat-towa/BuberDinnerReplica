@@ -3,23 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Api", "BuberDinner.Api\BuberDinner.Api.csproj", "{CAC5056A-3EE0-4F2D-A1DB-ED7EB21B27CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Api", "BuberDinner.Api\BuberDinner.Api.csproj", "{CAC5056A-3EE0-4F2D-A1DB-ED7EB21B27CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Application", "BuberDinner.Application\BuberDinner.Application.csproj", "{EE801A3E-D115-4435-BE76-D0136DF25D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Application", "BuberDinner.Application\BuberDinner.Application.csproj", "{EE801A3E-D115-4435-BE76-D0136DF25D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Contracts", "BuberDinner.Contracts\BuberDinner.Contracts.csproj", "{CD5F8735-E8B2-4A97-85EB-8DBA31DB7EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Contracts", "BuberDinner.Contracts\BuberDinner.Contracts.csproj", "{CD5F8735-E8B2-4A97-85EB-8DBA31DB7EE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Domain", "BuberDinner.Domain\BuberDinner.Domain.csproj", "{59C53FEF-133B-4A73-971B-AEB93E9D0339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Domain", "BuberDinner.Domain\BuberDinner.Domain.csproj", "{59C53FEF-133B-4A73-971B-AEB93E9D0339}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Infrastructure", "BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj", "{58D55349-BE42-45D1-A56E-1EB95D8AB3F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Infrastructure", "BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj", "{58D55349-BE42-45D1-A56E-1EB95D8AB3F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{EDB0EFA9-8EAB-45B1-A607-188F9352F3F0}"
+	ProjectSection(SolutionItems) = preProject
+		Requests\Auth.http = Requests\Auth.http
+		Requests\Dinner.http = Requests\Dinner.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CAC5056A-3EE0-4F2D-A1DB-ED7EB21B27CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,8 @@ Global
 		{58D55349-BE42-45D1-A56E-1EB95D8AB3F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D55349-BE42-45D1-A56E-1EB95D8AB3F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D55349-BE42-45D1-A56E-1EB95D8AB3F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
