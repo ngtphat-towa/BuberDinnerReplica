@@ -2,11 +2,11 @@ using BuberDinner.Domain.Common.Models;
 using BuberDinner.Domain.Common.ValueObjects;
 using BuberDinner.Domain.Dinner.ValueObjects;
 using BuberDinner.Domain.Host.ValueObjects;
-using BuberDinner.Domain.Menu.Entities;
-using BuberDinner.Domain.Menu.ValueObjects;
+using BuberDinner.Domain.Menus.Entities;
+using BuberDinner.Domain.Menus.ValueObjects;
 using BuberDinner.Domain.MenuReview.ValueObjects;
 
-namespace BuberDinner.Domain.Menu;
+namespace BuberDinner.Domain.Menus;
 
 public sealed class Menu : AggregateRoot<MenuId>
 {
@@ -32,6 +32,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         string description,
         AverageRating averageRating,
         HostId hostId,
+        List<MenuSection> sections,
         DateTime createdDateTime,
         DateTime updatedDateTime)
         : base(menuId)
@@ -40,6 +41,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         Description = description;
         AverageRating = averageRating;
         HostId = hostId;
+        _sections = sections;
         CreatedDateTime = createdDateTime;
         UpdatedDateTime = updatedDateTime;
     }
@@ -48,7 +50,8 @@ public sealed class Menu : AggregateRoot<MenuId>
         string name,
         string description,
         AverageRating averageRating,
-        HostId hostId)
+        HostId hostId,
+        List<MenuSection> sections)
     {
         return new(
             MenuId.CreateUnique(),
@@ -56,6 +59,7 @@ public sealed class Menu : AggregateRoot<MenuId>
             description,
             averageRating,
             hostId,
+            sections,
             DateTime.UtcNow,
             DateTime.UtcNow);
     }
