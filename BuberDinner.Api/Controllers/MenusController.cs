@@ -1,19 +1,38 @@
-﻿using BuberDinner.Contracts.Menu;
-using BuberDinner.Domain.Menu.ValueObjects;
+﻿using BuberDinner.Application.Menus.Create;
+using BuberDinner.Contracts.Menu;
+
+using MapsterMapper;
+
+using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers;
 
-
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+[ProducesResponseType(StatusCodes.Status200OK)]
 public class MenusController : ApiControllerBase
 {
+    private readonly IMapper _mapper;
+
+    private readonly ISender _mediator;
+
+    public MenusController(IMapper mapper, ISender sender)
+    {
+        _mapper = mapper;
+        _mediator = sender;
+    }
+
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateMenu([FromBody] CreateMenuRequest request)
     {
-        await Task.CompletedTask;
-        return NoContent();
-
+        var command = _mapper.Map<CreateMenuCommand>(request);
+        var result = await _mediator.Send(command);
+        return result.Match(
+           menu => Ok(_mapper.Map<MenuResponse>(menu)),
+           errors => Problem(errors));
     }
 
     [HttpGet("{menuId}")]
