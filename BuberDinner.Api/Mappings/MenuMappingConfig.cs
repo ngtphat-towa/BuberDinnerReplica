@@ -2,7 +2,7 @@
 using BuberDinner.Contracts.Menu;
 using BuberDinner.Domain.Menus.Entities;
 using BuberDinner.Domain.Menus;
-
+using BuberDinner.Domain.Wrapper;
 using Mapster;
 
 namespace BuberDinner.Api.Mappings;
@@ -12,8 +12,8 @@ public class MenuMappingConfig : IRegister
     public void Register(TypeAdapterConfig config)
     {
         config.NewConfig<(CreateMenuRequest Request, string HostId), CreateMenuCommand>()
-           .Map(dest => dest.HostId, src => src.HostId)
-           .Map(dest => dest, src => src.Request);
+            .Map(dest => dest.HostId, src => src.HostId)
+            .Map(dest => dest, src => src.Request);
 
         config.NewConfig<Menu, MenuResponse>()
             .Map(dest => dest.Id, src => src.Id.Value)

@@ -1,5 +1,10 @@
 ﻿using BuberDinner.Application.Menus.Create;
+using BuberDinner.Application.Menus.Delete;
+using BuberDinner.Application.Menus.Get;
+using BuberDinner.Application.Menus.GetAll;
+using BuberDinner.Application.Menus.Update;
 using BuberDinner.Contracts.Menu;
+using BuberDinner.Domain.Wrapper;
 
 using MapsterMapper;
 
@@ -9,12 +14,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuberDinner.Api.Controllers;
 
-[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+[ProducesResponseType(StatusCodes.Status400BadRequest)]
 public class MenusController : ApiControllerBase
 {
     private readonly IMapper _mapper;
-
     private readonly ISender _mediator;
 
     public MenusController(IMapper mapper, ISender sender)
@@ -24,8 +28,7 @@ public class MenusController : ApiControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> CreateMenu([FromBody] CreateMenuRequest request)
     {
         var command = _mapper.Map<CreateMenuCommand>(request);
@@ -35,39 +38,84 @@ public class MenusController : ApiControllerBase
            errors => Problem(errors));
     }
 
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAllMenus([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+    {
+        var query = new GetAllMenusQuery { PageNumber = pageNumber, PageSize = pageSize };
+        var result = await _mediator.Send(query);
+
+        return result.Match(
+                 pagedList =>
+                 {
+                     var menuResponses = pagedList.Select(menu => _mapper.Map<MenuResponse>(menu)).ToList();
+                     var pagedResponse = new PagedList<MenuResponse>(
+                         menuResponses,
+                         pagedList.TotalCount,
+                         pagedList.CurrentPage,
+                         pagedList.PageSize
+                     );
+                     return Ok(pagedResponse);
+                 },
+            errors => Problem(errors));
+    }
+
     [HttpGet("{menuId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetMenu(string menuId)
     {
-        await Task.CompletedTask;
+        var query = new GetMenuQuery { MenuId = menuId };
+        var result = await _mediator.Send(query);
 
-        return NoContent();
-
+        return result.Match(
+            menu => Ok(_mapper.Map<MenuResponse>(menu)),
+            errors => Problem(errors));
     }
 
     [HttpPut("{menuId}/section/{sectionId}")]
-    public async Task<IActionResult> UpdateMenuSection(string menuId, string sectionId, [FromBody] UpdateMenuSectionRequest request)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdateMenuSection(
+        string menuId,
+        string sectionId,
+        [FromBody] UpdateMenuSectionRequest request)
     {
-        await Task.CompletedTask;
+        var command = _mapper.Map<UpdateMenuSectionCommand>(request);
+        command.MenuId = menuId;
+        command.SectionId = sectionId;
 
-        return NoContent();
-
+        var result = await _mediator.Send(command);
+        return result.Match(
+            _ => NoContent(),
+            errors => Problem(errors));
     }
 
     [HttpPut("{menuId}/section/{sectionId}/item/{itemId}")]
-    public async Task<IActionResult> UpdateMenuItem(string menuId, string sectionId, string itemId, [FromBody] UpdateMenuItemRequest request)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdateMenuItem(
+        string menuId,
+        string sectionId,
+        string itemId,
+        [FromBody] UpdateMenuItemRequest request)
     {
-        await Task.CompletedTask;
+        var command = _mapper.Map<UpdateMenuItemCommand>(request);
+        command.MenuId = menuId;
+        command.SectionId = sectionId;
+        command.ItemId = itemId;
 
-        return NoContent();
-
+        var result = await _mediator.Send(command);
+        return result.Match(
+            _ => NoContent(),
+            errors => Problem(errors));
     }
 
     [HttpDelete("{menuId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteMenu(string menuId)
     {
-        await Task.CompletedTask;
-
-        return NoContent();
+        var command = new DeleteMenuCommand { MenuId = menuId };
+        var result = await _mediator.Send(command);
+        return result.Match(
+            _ => NoContent(),
+            errors => Problem(errors));
     }
-
 }
