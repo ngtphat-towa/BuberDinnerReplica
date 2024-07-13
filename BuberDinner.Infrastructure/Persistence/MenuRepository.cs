@@ -10,11 +10,10 @@ namespace BuberDinner.Infrastructure.Persistence;
 public class MenuRepository : IMenuRepository
 {
 
-    private readonly List<Menu> _context;
+    private  static readonly List<Menu> _context = new();
 
     public MenuRepository()
     {
-        _context = new();
     }
 
     public async Task<Menu> AddAsync(Menu menu)
@@ -39,10 +38,10 @@ public class MenuRepository : IMenuRepository
     {
         await Task.CompletedTask;
         var source = _context.AsQueryable();
-        var count = await source.CountAsync();
-        var items = await source.Skip((pageNumber - 1) * pageSize)
+        var count = source.Count();
+        var items = source.Skip((pageNumber - 1) * pageSize)
                                  .Take(pageSize)
-                                 .ToListAsync();
+                                 .ToList();
 
         return new PagedList<Menu>(items, count, pageNumber, pageSize);
     }
