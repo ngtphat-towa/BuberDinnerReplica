@@ -5,7 +5,6 @@ using BuberDinner.Application.Interfaces.Repositories;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Infrastructure.Authentication;
 using BuberDinner.Infrastructure.Common.Services;
-using BuberDinner.Infrastructure.Context;
 using BuberDinner.Infrastructure.Persistence;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -42,10 +41,6 @@ public static class RegisterInfrastructure
     }
     public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
-        // Add DbContext
-        services.AddDbContext<BuberDinnerDbContext>(options =>
-            options.UseInMemoryDatabase("BuberDinnerDb"));
-
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
         return services;
