@@ -16,6 +16,11 @@ public sealed class MenuSectionId : ValueObject
         return new(Guid.NewGuid());
     }
 
+    public static MenuSectionId GetId(string id)
+    {
+        return new(Guid.Parse(id));
+    }
+
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;

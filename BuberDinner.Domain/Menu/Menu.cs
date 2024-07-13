@@ -54,7 +54,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         List<MenuSection> sections)
     {
         return new(
-            MenuId.CreateUnique(),
+            MenuId.Create(),
             name,
             description,
             averageRating,

@@ -16,6 +16,7 @@ public sealed class MenuSection : Entity<MenuSectionId>
     {
         Name = name;
         Description = description;
+        _items = items;
     }
 
     public static MenuSection Create(string name, string description, List<MenuItem> items)
