@@ -8,7 +8,7 @@ using BuberDinner.Domain.User.ValueObjects;
 
 namespace BuberDinner.Domain.MenuReview
 {
-    public sealed class Guest : AggregateRoot<GuestId>
+    public sealed class Guest : AggregateRoot<GuestId, Guid>
     {
     
         public string FirstName { get; set; }

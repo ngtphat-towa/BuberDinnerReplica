@@ -3,8 +3,6 @@ using BuberDinner.Domain.Menus.ValueObjects;
 
 using ErrorOr;
 
-using FluentValidation;
-
 using MediatR;
 
 namespace BuberDinner.Application.Features.Menus.Update.MenuItem;

@@ -1,6 +1,4 @@
-﻿using BuberDinner.Domain.Wrapper;
-
-namespace BuberDinner.Application.Common.Wrappers;
+﻿namespace BuberDinner.Application.Common.Wrappers;
 
 public class PaginationResponse<TResponse> 
 {
