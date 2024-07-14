@@ -1,4 +1,4 @@
-using BuberDinner.Application.Persistence;
+using BuberDinner.Application.Interfaces.Repositories;
 using BuberDinner.Domain.User;
 
 namespace BuberDinner.Infrastructure.Repositories;

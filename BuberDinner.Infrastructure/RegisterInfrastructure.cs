@@ -2,11 +2,11 @@ using System.Text;
 
 using BuberDinner.Application.Common.Services;
 using BuberDinner.Application.Interfaces.Repositories;
-using BuberDinner.Application.Persistence;
-using BuberDinner.Infrastructure.Authentication;
 using BuberDinner.Infrastructure.Common.Services;
 using BuberDinner.Infrastructure.Context;
 using BuberDinner.Infrastructure.Repositories;
+using BuberDinner.Infrastructure.Services;
+using BuberDinner.Infrastructure.Authentication;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
