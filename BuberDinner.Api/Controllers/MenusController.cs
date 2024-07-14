@@ -1,10 +1,13 @@
-﻿using BuberDinner.Application.Menus.Create;
+﻿using BuberDinner.Application.Common.Wrappers;
+using BuberDinner.Application.Menus.Create;
 using BuberDinner.Application.Menus.Delete;
 using BuberDinner.Application.Menus.Get;
 using BuberDinner.Application.Menus.GetAll;
 using BuberDinner.Application.Menus.Update;
 using BuberDinner.Contracts.Menu;
 using BuberDinner.Domain.Wrapper;
+
+using Mapster;
 
 using MapsterMapper;
 
@@ -46,18 +49,21 @@ public class MenusController : ApiControllerBase
         var result = await _mediator.Send(query);
 
         return result.Match(
-                 pagedList =>
-                 {
-                     var menuResponses = pagedList.Select(menu => _mapper.Map<MenuResponse>(menu)).ToList();
-                     var pagedResponse = new PagedList<MenuResponse>(
-                         menuResponses,
-                         pagedList.TotalCount,
-                         pagedList.CurrentPage,
-                         pagedList.PageSize
-                     );
-                     return Ok(pagedResponse);
-                 },
-            errors => Problem(errors));
+          pagedList =>Ok(new PaginationResponse<MenuResponse>
+          {
+              Data = pagedList.Select(item => _mapper.Map<MenuResponse>(item)).ToList(),
+              Meta = new PagedResponseMeta
+              {
+                  CurrentPage = pagedList.CurrentPage,
+                  PageSize = pagedList.PageSize,
+                  TotalCount = pagedList.TotalCount,
+                  TotalPages = pagedList.TotalPages,
+                  HasPrevious = pagedList.HasPrevious,
+                  HasNext = pagedList.HasNext
+              }
+          }),
+          errors => Problem(errors)
+      );
     }
 
     [HttpGet("{menuId}")]
