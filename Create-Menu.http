@@ -1,0 +1,43 @@
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjVkZDdlZS0zNmY2LTRhZjAtYTk1MC1kMzUyNWRjZGIxZWEiLCJnaXZlbl9uYW1lIjoiSmFjb2IiLCJmYW1pbHlfbmFtZSI6IkxvcmVueiIsImp0aSI6ImUwNzI5ZjcwLTJiNWEtNDVhYS1iODRiLTQ3NmRhYzhkYTU3ZiIsImF1ZCI6IkJ1YmVyRGlubmVyIiwiaXNzIjoiQnViZXJEaW5uZXIiLCJleHAiOjE3MjA4NDc1NzR9.nh3SXDSIw-gYfB7d3ENtTSLziJondQ3sklo-57kAWdI
+@host= https://localhost:7194
+
+POST {{host}}/api/Menus/create
+Accept-Content: application/json
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "Name": "Delicious Menu",
+    "Description": "A menu full of tasty dishes",
+    "HostId": "33bacf9b-ba28-443f-a0c1-ff60828db10e",
+    "Sections": [
+        {
+            "Name": "Appetizers",
+            "Description": "Starters to whet your appetite",
+            "Items": [
+                {
+                    "Name": "Garlic Bread",
+                    "Description": "Toasted bread with garlic butter"
+                },
+                {
+                    "Name": "Caesar Salad",
+                    "Description": "Fresh romaine lettuce with Caesar dressing"
+                }
+            ]
+        },
+        {
+            "Name": "Main Courses",
+            "Description": "Heartier dishes to satisfy your hunger",
+            "Items": [
+                {
+                    "Name": "Grilled Salmon",
+                    "Description": "Fresh salmon grilled to perfection"
+                },
+                {
+                    "Name": "Pasta Carbonara",
+                    "Description": "Creamy pasta with bacon and cheese"
+                }
+            ]
+        }
+    ]
+}

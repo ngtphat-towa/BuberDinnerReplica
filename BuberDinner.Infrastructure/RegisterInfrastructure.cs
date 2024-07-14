@@ -1,12 +1,14 @@
 using System.Text;
 
 using BuberDinner.Application.Common.Services;
+using BuberDinner.Application.Interfaces.Repositories;
 using BuberDinner.Application.Persistence;
 using BuberDinner.Infrastructure.Authentication;
 using BuberDinner.Infrastructure.Common.Services;
 using BuberDinner.Infrastructure.Persistence;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -39,7 +41,8 @@ public static class RegisterInfrastructure
     }
     public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
-        services.AddSingleton<IUserRepository, UserRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
         return services;
     }
 

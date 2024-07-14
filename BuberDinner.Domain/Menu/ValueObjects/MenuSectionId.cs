@@ -1,6 +1,6 @@
 using BuberDinner.Domain.Common.Models;
 
-namespace BuberDinner.Domain.Menu.ValueObjects;
+namespace BuberDinner.Domain.Menus.ValueObjects;
 
 public sealed class MenuSectionId : ValueObject
 {
@@ -14,6 +14,11 @@ public sealed class MenuSectionId : ValueObject
     public static MenuSectionId CreateUnique()
     {
         return new(Guid.NewGuid());
+    }
+
+    public static MenuSectionId GetId(string id)
+    {
+        return new(Guid.Parse(id));
     }
 
     public override IEnumerable<object> GetEqualityComponents()

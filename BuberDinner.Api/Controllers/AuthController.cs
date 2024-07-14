@@ -13,12 +13,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace BuberDinner.Api;
 
 [AllowAnonymous]
-public class AuthenticationController : ApiControllerBase
+public class AuthController : ApiControllerBase
 {
     private readonly ISender _mediator;
     private readonly IMapper _mapper;
 
-    public AuthenticationController(ISender mediator, IMapper mapper)
+    public AuthController(ISender mediator, IMapper mapper)
     {
         _mediator = mediator;
         _mapper = mapper;
