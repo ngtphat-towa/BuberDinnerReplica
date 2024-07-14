@@ -17,11 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{ED
 	ProjectSection(SolutionItems) = preProject
 		Requests\Auth.http = Requests\Auth.http
 		Requests\Dinner.http = Requests\Dinner.http
+		Menu.http = Menu.http
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menu", "Menu", "{3470A779-40D2-47D9-8518-07936F596477}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ENV", "ENV", "{C37AA979-06F1-483A-8A5E-1E2D223FE7D4}"
 	ProjectSection(SolutionItems) = preProject
-		Create-Menu.http = Create-Menu.http
+		env.list = env.list
 	EndProjectSection
 EndProject
 Global
@@ -53,9 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3470A779-40D2-47D9-8518-07936F596477} = {EDB0EFA9-8EAB-45B1-A607-188F9352F3F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92F37944-2283-4257-9191-033688739DEA}

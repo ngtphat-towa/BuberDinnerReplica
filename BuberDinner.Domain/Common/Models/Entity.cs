@@ -51,4 +51,9 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
     {
         return Id.GetHashCode();
     }
+
+    /// <inheritdoc />
+    protected Entity() {
+        Id = default!;
+    }
 }

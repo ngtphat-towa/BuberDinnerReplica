@@ -15,8 +15,12 @@ public sealed class MenuId : ValueObject
     {
         return new(Guid.NewGuid());
     }
+    public static MenuId Create(Guid id)
+    {
+        return new(id);
+    }
 
-    public static MenuId GetId(string id)
+    public static MenuId Create(string id)
     {
         return new(Guid.Parse(id));
     }
