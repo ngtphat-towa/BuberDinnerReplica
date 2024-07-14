@@ -6,8 +6,8 @@ namespace BuberDinner.Domain.Menus.Entities;
 public sealed class MenuSection : Entity<MenuSectionId>
 {
     private readonly List<MenuItem> _items = new();
-    public string Name { get; }
-    public string Description { get; }
+    public string Name { get; } = string.Empty;
+    public string Description { get; } = string.Empty;
 
     public IReadOnlyList<MenuItem> Items => _items.AsReadOnly();
 
@@ -23,4 +23,7 @@ public sealed class MenuSection : Entity<MenuSectionId>
     {
         return new(MenuSectionId.CreateUnique(), name, description, items);
     }
+
+    private MenuSection() { }
+
 }

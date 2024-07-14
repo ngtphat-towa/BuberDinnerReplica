@@ -17,13 +17,19 @@ public sealed class MenuItemId : ValueObject
         return new(Guid.NewGuid());
     }
 
-    public static MenuItemId GetId(string id)
+    public static MenuItemId Create(string id)
     {
         return new(Guid.Parse(id));
+    }
+    public static MenuItemId Create(Guid id)
+    {
+        return new(id);
     }
 
     public override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
+
+    private MenuItemId() { }
 }
