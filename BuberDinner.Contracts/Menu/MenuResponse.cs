@@ -1,24 +1,24 @@
 ﻿namespace BuberDinner.Contracts.Menu;
 
 public record MenuResponse(
-        string Id,
+        Guid Id,
         string Name,
         string Description,
         float? AverageRating,
         List<MenuSectionResponse> Sections,
-        string HostId,
+        Guid HostId,
         List<string> DinnerIds,
         List<string> MenuReviewIds,
         DateTime CreatedDateTime,
         DateTime UpdatedDateTime);
 
 public record MenuSectionResponse(
-    string Id,
+    Guid Id,
     string Name,
     string Description,
     List<MenuItemResponse> Items);
 
 public record MenuItemResponse(
-    string Id,
+    Guid Id,
     string Name,
     string Description);
