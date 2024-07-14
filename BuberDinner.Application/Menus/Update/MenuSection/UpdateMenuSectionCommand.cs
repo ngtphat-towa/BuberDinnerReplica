@@ -22,10 +22,10 @@ public class UpdateMenuSectionCommandHandler : IRequestHandler<UpdateMenuSection
 
     public async Task<ErrorOr<Unit>> Handle(UpdateMenuSectionCommand request, CancellationToken cancellationToken)
     {
-        var menu = await _menuRepository.GetByIdAsync(MenuId.GetId(request.MenuId));
+        var menu = await _menuRepository.GetByIdAsync(MenuId.Create(request.MenuId));
         if (menu is null) return Error.NotFound($"Menu with ID {request.MenuId} not found.");
 
-        var section = menu.Sections.FirstOrDefault(sec => sec.Id == MenuSectionId.GetId(request.SectionId));
+        var section = menu.Sections.FirstOrDefault(sec => sec.Id == MenuSectionId.Create(request.SectionId));
         if (section is null) return Error.NotFound($"Section with ID {request.SectionId} not found.");
 
         // Update section details

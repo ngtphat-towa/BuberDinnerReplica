@@ -3,7 +3,7 @@
 public record CreateMenuRequest(
     string Name,
     string Description,
-    string HostId,
+    Guid HostId,
     List<MenuSectionTransfer> Sections);
 
 public record MenuSectionTransfer(

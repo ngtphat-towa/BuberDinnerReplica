@@ -22,7 +22,7 @@ public class DeleteMenuCommandHandler : IRequestHandler<DeleteMenuCommand, Error
 
     public async Task<ErrorOr<Unit>> Handle(DeleteMenuCommand request, CancellationToken cancellationToken)
     {
-        var menu = await _menuRepository.GetByIdAsync(MenuId.GetId(request.MenuId));
+        var menu = await _menuRepository.GetByIdAsync(MenuId.Create(request.MenuId));
         if (menu is null) return Error.NotFound($"Menu with ID {request.MenuId} not found.");
 
         await _menuRepository.DeleteAsync(menu);
