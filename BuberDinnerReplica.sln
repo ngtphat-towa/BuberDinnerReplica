@@ -5,23 +5,56 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B29DCACA-3208-4817-8886-A47B4CFD6BF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Api", "src\BuberDinner.Api\BuberDinner.Api.csproj", "{416168BD-F4FE-4553-9754-79A0CECC9738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Api", "src\BuberDinner.Api\BuberDinner.Api.csproj", "{416168BD-F4FE-4553-9754-79A0CECC9738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Application", "src\BuberDinner.Application\BuberDinner.Application.csproj", "{DC7D1948-59D9-4614-83F3-5650E2BDE4BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Application", "src\BuberDinner.Application\BuberDinner.Application.csproj", "{DC7D1948-59D9-4614-83F3-5650E2BDE4BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Contracts", "src\BuberDinner.Contracts\BuberDinner.Contracts.csproj", "{73AA1828-9C69-4455-A7E7-13D78D605BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Contracts", "src\BuberDinner.Contracts\BuberDinner.Contracts.csproj", "{73AA1828-9C69-4455-A7E7-13D78D605BDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Domain", "src\BuberDinner.Domain\BuberDinner.Domain.csproj", "{C27047D0-EA5B-427B-9D5B-9F059A1EA459}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Domain", "src\BuberDinner.Domain\BuberDinner.Domain.csproj", "{C27047D0-EA5B-427B-9D5B-9F059A1EA459}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuberDinner.Infrastructure", "src\BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj", "{C703363E-4727-44C7-B641-BF6D21BD1D84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Infrastructure", "src\BuberDinner.Infrastructure\BuberDinner.Infrastructure.csproj", "{C703363E-4727-44C7-B641-BF6D21BD1D84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E9D9A866-94E9-4CEE-B342-1E90A6218C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "requests", "requests", "{2AFF4658-4AE6-451D-B2FB-AD2553C20F9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{33E63A14-B1AE-41D1-BE59-303D387EBB62}"
+	ProjectSection(SolutionItems) = preProject
+		requests\Auths\Auth.http = requests\Auths\Auth.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menu", "Menu", "{F243AF1A-78CF-41BE-9FEF-06220B9AB652}"
+	ProjectSection(SolutionItems) = preProject
+		requests\Menu\Menu.http = requests\Menu\Menu.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dinner", "Dinner", "{C8A6ADAB-99C0-4AEA-91C7-844E0BE5512A}"
+	ProjectSection(SolutionItems) = preProject
+		requests\Dinners\Dinner.http = requests\Dinners\Dinner.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{B1911905-8A36-4AAC-8893-669EC47F187B}"
+	ProjectSection(SolutionItems) = preProject
+		docs\API\API.Auth.md = docs\API\API.Auth.md
+		docs\API\API.Menu.md = docs\API\API.Menu.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainModels", "DomainModels", "{03FB33B4-7120-41EE-A947-1297217625B9}"
+	ProjectSection(SolutionItems) = preProject
+		docs\DomainModels\Aggregates.Bill.md = docs\DomainModels\Aggregates.Bill.md
+		docs\DomainModels\Aggregates.Dinner.md = docs\DomainModels\Aggregates.Dinner.md
+		docs\DomainModels\Aggregates.Guest.md = docs\DomainModels\Aggregates.Guest.md
+		docs\DomainModels\Aggregates.Host.md = docs\DomainModels\Aggregates.Host.md
+		docs\DomainModels\Aggregates.Menu.md = docs\DomainModels\Aggregates.Menu.md
+		docs\DomainModels\Aggregates.MenuReview.md = docs\DomainModels\Aggregates.MenuReview.md
+		docs\DomainModels\Aggregates.User.md = docs\DomainModels\Aggregates.User.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{416168BD-F4FE-4553-9754-79A0CECC9738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,11 +78,22 @@ Global
 		{C703363E-4727-44C7-B641-BF6D21BD1D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C703363E-4727-44C7-B641-BF6D21BD1D84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{416168BD-F4FE-4553-9754-79A0CECC9738} = {B29DCACA-3208-4817-8886-A47B4CFD6BF3}
 		{DC7D1948-59D9-4614-83F3-5650E2BDE4BB} = {B29DCACA-3208-4817-8886-A47B4CFD6BF3}
 		{73AA1828-9C69-4455-A7E7-13D78D605BDE} = {B29DCACA-3208-4817-8886-A47B4CFD6BF3}
 		{C27047D0-EA5B-427B-9D5B-9F059A1EA459} = {B29DCACA-3208-4817-8886-A47B4CFD6BF3}
 		{C703363E-4727-44C7-B641-BF6D21BD1D84} = {B29DCACA-3208-4817-8886-A47B4CFD6BF3}
+		{33E63A14-B1AE-41D1-BE59-303D387EBB62} = {2AFF4658-4AE6-451D-B2FB-AD2553C20F9D}
+		{F243AF1A-78CF-41BE-9FEF-06220B9AB652} = {2AFF4658-4AE6-451D-B2FB-AD2553C20F9D}
+		{C8A6ADAB-99C0-4AEA-91C7-844E0BE5512A} = {2AFF4658-4AE6-451D-B2FB-AD2553C20F9D}
+		{B1911905-8A36-4AAC-8893-669EC47F187B} = {E9D9A866-94E9-4CEE-B342-1E90A6218C7D}
+		{03FB33B4-7120-41EE-A947-1297217625B9} = {E9D9A866-94E9-4CEE-B342-1E90A6218C7D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A767B66C-93F4-4B98-9A24-549D3D8C0456}
 	EndGlobalSection
 EndGlobal
