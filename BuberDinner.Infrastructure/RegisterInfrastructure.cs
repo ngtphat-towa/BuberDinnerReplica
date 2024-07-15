@@ -1,6 +1,7 @@
 using System.Text;
 
 using BuberDinner.Application.Common.Services;
+
 using BuberDinner.Application.Interfaces.Repositories;
 using BuberDinner.Infrastructure.Common.Services;
 using BuberDinner.Infrastructure.Context;
@@ -10,10 +11,7 @@ using BuberDinner.Infrastructure.Authentication;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+
 using BuberDinner.Infrastructure.Context.Interceptors;
 
 namespace BuberDinner.Infrastructure;
@@ -29,6 +27,7 @@ public static class RegisterInfrastructure
         services.AddAuthentication();
         services.AddCommonService();
         services.AddPersistence(configuration);
+
         services.AddAuth(configuration);
 
 
@@ -41,6 +40,7 @@ public static class RegisterInfrastructure
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         return services;
     }
+
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<BuberDinnerDbContext>(options =>
@@ -49,6 +49,7 @@ public static class RegisterInfrastructure
         services.AddScoped<PublishDomainEventInterceptor>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
+
         return services;
     }
 

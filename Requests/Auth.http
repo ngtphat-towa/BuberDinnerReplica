@@ -11,6 +11,7 @@ Content-Type: application/json
 
 ####
 POST {{host}}/api/authentication/register
+
 Content-Type: application/json
 
 {
