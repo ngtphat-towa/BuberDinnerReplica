@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using BuberDinner.Infrastructure.Context.Interceptors;
 
 namespace BuberDinner.Infrastructure;
 
@@ -44,6 +45,8 @@ public static class RegisterInfrastructure
     {
         services.AddDbContext<BuberDinnerDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<PublishDomainEventInterceptor>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
         return services;

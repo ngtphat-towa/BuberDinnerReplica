@@ -5,9 +5,11 @@ namespace BuberDinner.Domain.Common.Models;
 /// Entities are objects with a unique identity represented by the Id property.
 /// </summary>
 /// <typeparam name="TId">The type of the entity's identity.</typeparam>
-public abstract class Entity<TId> : IEquatable<Entity<TId>>
-    where TId : notnull
+public abstract class Entity<TId> : IEquatable<Entity<TId>>, IHasDomainEvents
+    where TId : ValueObject
 {
+    private readonly List<IDomainEvent> _domainEvents = new();
+    public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
     /// <summary>
     /// Gets the unique identity of the entity.
     /// </summary>
@@ -52,8 +54,19 @@ public abstract class Entity<TId> : IEquatable<Entity<TId>>
         return Id.GetHashCode();
     }
 
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+
+    protected void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        _domainEvents.Add(domainEvent);
+    }
+
     /// <inheritdoc />
-    protected Entity() {
+    protected Entity()
+    {
         Id = default!;
     }
 }
