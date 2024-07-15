@@ -1,5 +1,7 @@
-﻿namespace BuberDinner.Domain.Common.Models;
+﻿using MediatR;
 
-public interface IDomainEvent
+namespace BuberDinner.Domain.Common.Models;
+
+public interface IDomainEvent :INotification
 {
 }
