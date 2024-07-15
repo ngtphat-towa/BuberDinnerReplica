@@ -1,4 +1,5 @@
-using BuberDinner.Application;
+
+using BuberDinner.Application.Features.Authentication.Models;
 using BuberDinner.Contracts.Authentication;
 
 using Mapster;
@@ -12,6 +13,8 @@ public class AuthMappingConfig : IRegister
         // Manual mapping
         // The rest will be automatically handled 
         config.NewConfig<AuthenticationResult, AuthenticationResponse>()
-              .Map(dest => dest, src => src.User);
+              .Map(dest => dest.Token, src => src.Token)
+              .Map(dest => dest, src => src.User)
+              .Map(dest => dest.Id, src => src.User.IdValue);
     }
 }

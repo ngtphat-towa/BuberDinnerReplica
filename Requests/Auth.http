@@ -1,7 +1,7 @@
 
-@host=http://localhost:5062
+@host=https://localhost:7194
 
-POST {{host}}/authentication/login
+POST {{host}}/api/authentication/login
 Content-Type: application/json
 
 {
@@ -10,7 +10,8 @@ Content-Type: application/json
 }
 
 ####
-POST {{host}}/authentication/register
+POST {{host}}/api/authentication/register
+
 Content-Type: application/json
 
 {

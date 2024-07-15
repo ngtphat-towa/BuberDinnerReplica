@@ -10,7 +10,8 @@ namespace BuberDinner.Api;
 
 [Authorize]
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
 public class ApiControllerBase : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
