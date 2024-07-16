@@ -51,6 +51,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainModels", "DomainModel
 		docs\DomainModels\Aggregates.User.md = docs\DomainModels\Aggregates.User.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0B959D26-8A1C-4AF6-B7D6-28209AC199DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{6DB6BF02-0A11-40CD-9AC9-2835A4CD0064}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Api.UnitTests", "tests\UnitTests\BuberDinner.Api.UnitTests\BuberDinner.Api.UnitTests.csproj", "{F49FFF7F-424F-4DD5-B74D-6ADA65182736}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Application.UnitTests", "tests\UnitTests\BuberDinner.Application.UnitTests\BuberDinner.Application.UnitTests.csproj", "{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Domain.UnitTests", "tests\UnitTests\BuberDinner.Domain.UnitTests\BuberDinner.Domain.UnitTests.csproj", "{6E27059A-7C95-4C1C-AD84-66B62A97B687}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuberDinner.Infrastructure.UnitTests", "tests\UnitTests\BuberDinner.Infrastructure.UnitTests\BuberDinner.Infrastructure.UnitTests.csproj", "{07B06ACC-FAFA-480C-8C00-454996C9EED1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +89,22 @@ Global
 		{C703363E-4727-44C7-B641-BF6D21BD1D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C703363E-4727-44C7-B641-BF6D21BD1D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C703363E-4727-44C7-B641-BF6D21BD1D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F49FFF7F-424F-4DD5-B74D-6ADA65182736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F49FFF7F-424F-4DD5-B74D-6ADA65182736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F49FFF7F-424F-4DD5-B74D-6ADA65182736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F49FFF7F-424F-4DD5-B74D-6ADA65182736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E27059A-7C95-4C1C-AD84-66B62A97B687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E27059A-7C95-4C1C-AD84-66B62A97B687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E27059A-7C95-4C1C-AD84-66B62A97B687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E27059A-7C95-4C1C-AD84-66B62A97B687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B06ACC-FAFA-480C-8C00-454996C9EED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B06ACC-FAFA-480C-8C00-454996C9EED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B06ACC-FAFA-480C-8C00-454996C9EED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B06ACC-FAFA-480C-8C00-454996C9EED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +120,11 @@ Global
 		{C8A6ADAB-99C0-4AEA-91C7-844E0BE5512A} = {2AFF4658-4AE6-451D-B2FB-AD2553C20F9D}
 		{B1911905-8A36-4AAC-8893-669EC47F187B} = {E9D9A866-94E9-4CEE-B342-1E90A6218C7D}
 		{03FB33B4-7120-41EE-A947-1297217625B9} = {E9D9A866-94E9-4CEE-B342-1E90A6218C7D}
+		{6DB6BF02-0A11-40CD-9AC9-2835A4CD0064} = {0B959D26-8A1C-4AF6-B7D6-28209AC199DE}
+		{F49FFF7F-424F-4DD5-B74D-6ADA65182736} = {6DB6BF02-0A11-40CD-9AC9-2835A4CD0064}
+		{1FCDEA60-38ED-4A16-BE7B-35F9A18C97B7} = {6DB6BF02-0A11-40CD-9AC9-2835A4CD0064}
+		{6E27059A-7C95-4C1C-AD84-66B62A97B687} = {6DB6BF02-0A11-40CD-9AC9-2835A4CD0064}
+		{07B06ACC-FAFA-480C-8C00-454996C9EED1} = {6DB6BF02-0A11-40CD-9AC9-2835A4CD0064}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A767B66C-93F4-4B98-9A24-549D3D8C0456}

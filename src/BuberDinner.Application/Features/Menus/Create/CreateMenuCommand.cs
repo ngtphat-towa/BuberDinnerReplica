@@ -9,7 +9,7 @@ using BuberDinner.Domain.Menus.Entities;
 namespace BuberDinner.Application.Features.Menus.Create;
 
 public record CreateMenuCommand(
-    string HostId,
+    Guid HostId,
     string Name,
     string Description,
     List<MenuSectionCommand> Sections) : IRequest<ErrorOr<Menu>>;
@@ -34,8 +34,9 @@ public class CreateMenuCommandHandler : IRequestHandler<CreateMenuCommand, Error
 
     public async Task<ErrorOr<Menu>> Handle(CreateMenuCommand request, CancellationToken cancellationToken)
     {
+
         var menu = Menu.Create(
-            hostId: HostId.GetId(request.HostId),
+            hostId: HostId.Create(request.HostId),
             name: request.Name,
             description: request.Description,
             averageRating: AverageRating.CreateNew(),
